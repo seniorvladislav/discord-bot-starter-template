@@ -2,9 +2,7 @@ const { Client } = require("discord.js");
 
 const client = new Client();
 
-const token = "Здесь должен быть токен из портала разработчика Discord";
-
-const PREFIX = "!";
+const { token, prefix } = require("./config.json");
 
 client.on("ready", () => {
   console.log(`Успешное подключение к боту`);
@@ -14,9 +12,9 @@ client.on("ready", () => {
 client.on("message", (msg) => {
   console.log(msg.content);
 
-  if (msg.author.bot || !msg.content.startsWith(PREFIX)) return;
+  if (msg.author.bot || !msg.content.startsWith(prefix)) return;
 
-  const command = msg.content.toLowerCase().slice(PREFIX.length);
+  const command = msg.content.toLowerCase().slice(prefix.length);
 });
 
 client.login(token);

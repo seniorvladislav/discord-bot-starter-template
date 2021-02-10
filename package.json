@@ -1,7 +1,7 @@
 {
-  "name": "discord-bot-project",
+  "name": "discord-bot-starteer-template",
   "version": "1.0.0",
-  "description": "",
+  "description": "Стартовый шаблон для создания Discord-бота на Node.js",
   "main": "index.js",
   "scripts": {
     "start": "nodemon ."
@@ -9,10 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "needle": "^2.6.0"
-  },
   "devDependencies": {
     "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.1"
   }
 }
