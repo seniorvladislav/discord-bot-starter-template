@@ -6,8 +6,8 @@
 
 ![Download ZIP][download]
 
-[code]: ./src/images/download_code.png "Зелёная кнопка Code в верхнем правом углу Github-репозитория"
-[download]: ./src/images/download-zip.png
+[code]: https://i.ibb.co/4M1Vydz/download-code.png "Зелёная кнопка Code в верхнем правом углу Github-репозитория"
+[download]: https://i.ibb.co/hY9hhnw/download-zip.png
 
 После этого распакуйте содержимое архива в любое место на компьютере (например, на рабочий стол).
 
