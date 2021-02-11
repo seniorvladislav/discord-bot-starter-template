@@ -1,5 +1,5 @@
 {
-  "name": "discord-bot-starteer-template",
+  "name": "discord-bot-starter-template",
   "version": "1.0.0",
   "description": "Стартовый шаблон для создания Discord-бота на Node.js",
   "main": "index.js",
