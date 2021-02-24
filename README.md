@@ -1,26 +1,10 @@
-Для того чтобы начать работу по созданию бота сделайте следующее.
+Ресурсы, использованные или упомянутые в видео:
 
-Нажмите на зелёную кнопку "Code", а затем - Download ZIP.
+1. [TheCatAPI &mdash; сервис получения случайных изображений котиков:](https://thecatapi.com)
+   ![TheCatAPI](https://cdn2.thecatapi.com/logos/thecatapi_256xW.png)
 
-![Download Source Button][code]
+2. [Портал разработчика Discord:](https://discord.com/developers)
+   ![Discord Developer Portal](https://i.ibb.co/xDYXbk5/ddp.png)
 
-![Download ZIP][download]
-
-[code]: https://i.ibb.co/4M1Vydz/download-code.png "Зелёная кнопка Code в верхнем правом углу Github-репозитория"
-[download]: https://i.ibb.co/hY9hhnw/download-zip.png
-
-После этого распакуйте содержимое архива в любое место на компьютере (например, на рабочий стол).
-
-Затем откройте терминал в папке с распакованным архивом (либо интегрированный терминал VS Code) и запустите команду:
-
-```javascript
-npm install
-```
-
-Это установит все необходимые для работы бота зависимости (NPM-пакеты).
-
-После этого Вы можете запустить сервер с ботом, прописав команду:
-
-```javascript
-npm start
-```
+3. [NPM-пакет Needle (обёртка над модулем HTTP) для работы с сетью:](https://www.npmjs.com/package/needle)
+   ![NPM Needle](https://i.ibb.co/YpqjLrF/needle.png)
