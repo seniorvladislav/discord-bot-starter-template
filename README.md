@@ -1,8 +1,8 @@
-Ресурсы, использованные или упомянутые в видео:
-
 **_ВАЖНОЕ СООБЩЕНИЕ_**: для того чтобы работал канал #добро-пожаловать, а именно срабатывали события guildMemberAdd и guildMemberRemove на объекте client, которые мы прослушиваем в файле `utils/trackMemberLog.js`, &mdash; необходимо во вкладке Bot в портале разработчика Discord в твоём приложении с ботом в поле Privileged Gateway Intents отметить галочки, как показано ниже:
-
+<br><br>
 ![](https://i.ibb.co/C6zHXpC/intents-discord-developer-portal-disclaimer-github.png)
+<br><br>
+Ресурсы, использованные или упомянутые в видео:
 
 [TheCatAPI &mdash; сервис получения случайных изображений котиков:](https://thecatapi.com)
 
