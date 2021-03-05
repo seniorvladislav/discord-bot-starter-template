@@ -4,7 +4,14 @@ const trackMemberLog = require("./utils/trackMemberLog");
 
 const client = new Client();
 
-const { token, prefix, THE_CAT_API_KEY } = require("./config.json");
+const { prefix } = require("./config.json");
+
+// Если бот запущен локадьно, и только тогда
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+const { TOKEN, THE_CAT_API_KEY } = process.env;
 
 client.on("ready", () => {
   console.log(`Успешное подключение к боту`);
@@ -20,13 +27,13 @@ client.on("message", (msg) => {
   const command = msg.content.toLowerCase().slice(prefix.length);
 
   if (command === "дата") {
-    const date = new Date().toLocaleDateString();
+    const date = new Date().toLocaleDateString("RU");
     msg.channel.send(`Сейчас на сервере: ${date}`);
   } else if (command === "время") {
-    const time = new Date().toLocaleTimeString();
+    const time = new Date().toLocaleTimeString("RU");
     msg.channel.send(`Время на сервере: ${time}`);
   } else if (command === "датавремя") {
-    const date = new Date().toLocaleString();
+    const date = new Date().toLocaleString("RU");
     msg.channel.send(date);
   } else if (command.match(/ава|avatar/)) {
     const user = msg.mentions.users.first() || msg.author;
@@ -58,4 +65,4 @@ client.on("message", (msg) => {
   }
 });
 
-client.login(token);
+client.login(TOKEN);
