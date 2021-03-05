@@ -4,7 +4,7 @@ const trackMemberLog = require("./utils/trackMemberLog");
 
 const client = new Client();
 
-const { prefix } = require("./config.json");
+const { prefix, locale } = require("./config.json");
 
 // Если бот запущен локадьно, и только тогда
 if (process.env.NODE_ENV !== "production") {
@@ -27,13 +27,13 @@ client.on("message", (msg) => {
   const command = msg.content.toLowerCase().slice(prefix.length);
 
   if (command === "дата") {
-    const date = new Date().toLocaleDateString("RU");
+    const date = new Date().toLocaleDateString(...locale);
     msg.channel.send(`Сейчас на сервере: ${date}`);
   } else if (command === "время") {
-    const time = new Date().toLocaleTimeString("RU");
+    const time = new Date().toLocaleTimeString(...locale);
     msg.channel.send(`Время на сервере: ${time}`);
   } else if (command === "датавремя") {
-    const date = new Date().toLocaleString("RU");
+    const date = new Date().toLocaleString(...locale);
     msg.channel.send(date);
   } else if (command.match(/ава|avatar/)) {
     const user = msg.mentions.users.first() || msg.author;

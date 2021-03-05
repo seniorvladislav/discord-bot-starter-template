@@ -4,5 +4,11 @@
   "COLORS": {
     "red": "DA1B3E",
     "green": "40CE43"
-  }
+  },
+  "locale": [
+    "RU",
+    {
+      "timeZone": "Europe/Moscow"
+    }
+  ]
 }
