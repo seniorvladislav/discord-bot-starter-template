@@ -1,4 +1,4 @@
-<br /><br />
+<br/><br/>
 Ресурсы, использованные или упомянутые в видео:<br /><br />
 
 [MongoDB Atlas &mdash; базы данных MongoDB в облаке:](https://www.mongodb.com/cloud/atlas/signup)<br /><br />
