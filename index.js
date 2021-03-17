@@ -1,6 +1,7 @@
 const { Client } = require("discord.js");
 const needle = require("needle");
 const trackMemberLog = require("./utils/trackMemberLog");
+const connectDB = require("./helpers/db");
 
 const client = new Client();
 
@@ -13,9 +14,10 @@ if (process.env.NODE_ENV !== "production") {
 
 const { TOKEN, THE_CAT_API_KEY } = process.env;
 
-client.on("ready", () => {
+client.on("ready", async () => {
   console.log(`Успешное подключение к боту`);
   console.log(`Меня зовут ${client.user.username}\n\n`);
+  await connectDB();
   trackMemberLog(client);
 });
 
