@@ -1,6 +1,7 @@
 const { Client } = require("discord.js");
 const needle = require("needle");
 const trackMemberLog = require("./utils/trackMemberLog");
+const indexMembers = require("./utils/indexMembers");
 const connectDB = require("./helpers/db");
 
 const client = new Client();
@@ -18,6 +19,7 @@ client.on("ready", async () => {
   console.log(`Успешное подключение к боту`);
   console.log(`Меня зовут ${client.user.username}\n\n`);
   await connectDB();
+  indexMembers(client);
   trackMemberLog(client);
 });
 
