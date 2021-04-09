@@ -1,32 +1,26 @@
-**_Disclaimer:_** тебе необходимо либо склонировать мой репозиторий себе на компьютер целиком (команда git clone), либо скачать ZIP-архив (ссылка Download ZIP), **_а потом создать из моего кода свой репозиторий на Github, как показано в видео, и на Heroku заливать уже свой репозиторий (то есть мой публичный залить на Heroku не получится)_**
-<br><br>
-**_ВАЖНОЕ СООБЩЕНИЕ:_**
-В ролике я забыл упомянуть, что нужно представиться Git'у локально, для того чтобы он знал, кто вносит изменения в код. Сделать это можно с помощью таких команд:
-<br />
+Для того чтобы начать работу по созданию бота сделайте следующее.
+
+Нажмите на зелёную кнопку "Code", а затем - Download ZIP.
+
+![Download Source Button][code]
+
+![Download ZIP][download]
+
+[code]: https://i.ibb.co/4M1Vydz/download-code.png "Зелёная кнопка Code в верхнем правом углу Github-репозитория"
+[download]: https://i.ibb.co/hY9hhnw/download-zip.png
+
+После этого распакуйте содержимое архива в любое место на компьютере (например, на рабочий стол).
+
+Затем откройте терминал в папке с распакованным архивом (либо интегрированный терминал VS Code) и запустите команду:
 
 ```javascript
-git config --global user.name "Твоё/любое имя пользователя"
-
-git config --global user.email "Твой/любой e-mail адрес"
+npm install
 ```
 
-<br />
-Ресурсы, использованные или упомянутые в видео:<br /><br />
+Это установит все необходимые для работы бота зависимости (NPM-пакеты).
 
-[Git &mdash; система контроля версий:](https://git-scm.com)<br /><br />
+После этого Вы можете запустить сервер с ботом, прописав команду:
 
-![Git Version Control](https://camo.githubusercontent.com/6eaaae8defc78f268eaf0824350a66a1dfcb6aa77210d3dca069d1d1cefebc53/68747470733a2f2f6769742d73636d2e636f6d2f696d616765732f6c6f676f732f646f776e6c6f6164732f4769742d4c6f676f2d32436f6c6f722e706e67)<br /><br />
-
-[Heroku &mdash; облачная платформа для развёртывания приложений 24/7:](https://heroku.com)<br /><br />
-
-![Heroku Platform](https://i.ibb.co/fx50ngH/2021-03-05-3.png)<br /><br />
-
-[Портал разработчика Discord:](https://discord.com/developers)<br />
-
-![Discord Developer Portal](https://i.ibb.co/xDYXbk5/ddp.png)<br /><br />
-
-[NPM-пакет DotEnv для работы с переменными среды (environment variables):](https://www.npmjs.com/package/dotenv)
-
-<div style="text-align:center">
-<img src="https://raw.githubusercontent.com/motdotla/dotenv/master/dotenv.png" alt="NPM DotEnv" />
-</div>
+```javascript
+npm start
+```
