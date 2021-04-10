@@ -53,11 +53,15 @@ client.on("message", (msg) => {
     // } else if (command.startsWith('кот') || command.startsWith('cat')) {
     const endpoint = "https://api.thecatapi.com/v1/images/search";
 
-    needle("get", endpoint, {
-      headers: {
-        "x-api-key": THE_CAT_API_KEY,
-      },
-    })
+    needle(
+      "get",
+      endpoint,
+      THE_CAT_API_KEY && {
+        headers: {
+          "x-api-key": THE_CAT_API_KEY,
+        },
+      }
+    )
       .then((response) => {
         const { body } = response;
         // console.log(body);
