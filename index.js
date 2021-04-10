@@ -1,26 +1,14 @@
 const { Client } = require("discord.js");
 const needle = require("needle");
 const trackMemberLog = require("./utils/trackMemberLog");
-const indexMembers = require("./utils/indexMembers");
-const connectDB = require("./helpers/db");
-const Member = require("./models/Member");
 
 const client = new Client();
 
-const { prefix, locale } = require("./config.json");
-
-// Если бот запущен локадьно, и только тогда
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
-const { TOKEN, THE_CAT_API_KEY } = process.env;
+const { TOKEN, prefix, locale, THE_CAT_API_KEY } = require("./config.json");
 
 client.on("ready", async () => {
   console.log(`Успешное подключение к боту`);
   console.log(`Меня зовут ${client.user.username}\n\n`);
-  await connectDB();
-  indexMembers(client);
   trackMemberLog(client);
 });
 
@@ -29,21 +17,18 @@ client.on("message", async (msg) => {
 
   if (msg.author.bot || !msg.content.startsWith(prefix)) return;
 
-  const [commandName, ...args] = msg.content
-    .toLowerCase()
-    .slice(prefix.length)
-    .split(/\s+/);
+  const command = msg.content.toLowerCase().slice(prefix.length);
 
-  if (commandName === "дата") {
+  if (command === "дата") {
     const date = new Date().toLocaleDateString(...locale);
     msg.channel.send(`Сейчас на сервере: ${date}`);
-  } else if (commandName === "время") {
+  } else if (command === "время") {
     const time = new Date().toLocaleTimeString(...locale);
     msg.channel.send(`Время на сервере: ${time}`);
-  } else if (commandName === "датавремя") {
+  } else if (command === "датавремя") {
     const date = new Date().toLocaleString(...locale);
     msg.channel.send(date);
-  } else if (commandName.match(/ава|avatar/)) {
+  } else if (command.match(/ава|avatar/)) {
     const user = msg.mentions.users.first() || msg.author;
 
     const avatarURL = user.displayAvatarURL({
@@ -53,8 +38,8 @@ client.on("message", async (msg) => {
     });
 
     msg.channel.send(avatarURL);
-  } else if (commandName.match(/коты?|cats?/)) {
-    // } else if (commandName.startsWith('кот') || commandName.startsWith('cat')) {
+  } else if (command.match(/коты?|cats?/)) {
+    // } else if (command.startsWith('кот') || command.startsWith('cat')) {
     const endpoint = "https://api.thecatapi.com/v1/images/search";
 
     needle(
