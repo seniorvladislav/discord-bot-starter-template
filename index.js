@@ -74,37 +74,6 @@ client.on("message", async (msg) => {
         msg.channel.send(cat.url);
       })
       .catch((err) => console.error(err));
-  } else if (commandName.match(/addbal[ance]?/)) {
-    const userId = msg.mentions.users.first()
-      ? msg.mentions.users.first().id
-      : msg.author.id;
-
-    const sameUser = userId === msg.author.id;
-
-    // console.log("User ID: ", userId);
-
-    console.log(args);
-
-    if (!parseInt(args[0]) && !parseInt(args[1])) {
-      return msg.reply("ты указал неверную сумму перевода!");
-    }
-
-    const amount = parseInt(args.find((arg) => arg.match(/^\d+$/)));
-    console.log(amount);
-
-    const dbMember = await Member.findOne({
-      discordId: userId,
-    });
-
-    dbMember.balance += amount;
-
-    await dbMember.save();
-
-    msg.reply(
-      `ты пополнил ${sameUser ? "свой" : ""} баланс ${
-        !sameUser ? `<@!${userId}> ` : ""
-      }на ${amount}`
-    );
   }
 });
 
