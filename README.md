@@ -1,17 +1,18 @@
-**_ВАЖНОЕ СООБЩЕНИЕ_**: для того чтобы работал канал #добро-пожаловать, а именно срабатывали события guildMemberAdd и guildMemberRemove на объекте client, которые мы прослушиваем в файле `utils/trackMemberLog.js`, &mdash; необходимо во вкладке Bot в портале разработчика Discord в твоём приложении с ботом в поле Privileged Gateway Intents отметить галочки, как показано ниже:
-<br><br>
-![](https://i.ibb.co/C6zHXpC/intents-discord-developer-portal-disclaimer-github.png)
-<br><br>
-Ресурсы, использованные или упомянутые в видео:
+<br/><br/>
+Ресурсы, использованные или упомянутые в видео:<br /><br />
 
-[TheCatAPI &mdash; сервис получения случайных изображений котиков:](https://thecatapi.com)
+[MongoDB Atlas &mdash; базы данных MongoDB в облаке:](https://www.mongodb.com/cloud/atlas/signup)<br /><br />
 
-![TheCatAPI](https://cdn2.thecatapi.com/logos/thecatapi_256xW.png)
+![MongoDB Atlas](https://i.ibb.co/6Bdcy9g/mongodb.png)<br /><br />
 
-[Портал разработчика Discord:](https://discord.com/developers)
+[Git &mdash; система контроля версий:](https://git-scm.com)<br /><br />
 
-![Discord Developer Portal](https://i.ibb.co/xDYXbk5/ddp.png)
+![Git Version Control](https://camo.githubusercontent.com/6eaaae8defc78f268eaf0824350a66a1dfcb6aa77210d3dca069d1d1cefebc53/68747470733a2f2f6769742d73636d2e636f6d2f696d616765732f6c6f676f732f646f776e6c6f6164732f4769742d4c6f676f2d32436f6c6f722e706e67)<br /><br />
 
-[NPM-пакет Needle (обёртка над модулем HTTP) для работы с сетью:](https://www.npmjs.com/package/needle)
+[Портал разработчика Discord:](https://discord.com/developers)<br /><br />
 
-![NPM Needle](https://i.ibb.co/YpqjLrF/needle.png)
+![Discord Developer Portal](https://i.ibb.co/xDYXbk5/ddp.png)<br /><br />
+
+[NPM-пакет Mongoose для работы с базами данных MongoDB](https://www.npmjs.com/package/mongoose)<br /><br />
+
+![Mongoose NPM](https://miro.medium.com/max/648/1*iDvsmUwzZQxJSKdL0xzwIA.png)
