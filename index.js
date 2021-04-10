@@ -4,7 +4,7 @@ const trackMemberLog = require("./utils/trackMemberLog");
 
 const client = new Client();
 
-const { TOKEN, prefix, locale, THE_CAT_API_KEY } = require("./config.json");
+const { TOKEN, prefix, locale } = require("./config.json");
 
 client.on("ready", async () => {
   console.log(`Успешное подключение к боту`);
@@ -42,15 +42,7 @@ client.on("message", async (msg) => {
     // } else if (command.startsWith('кот') || command.startsWith('cat')) {
     const endpoint = "https://api.thecatapi.com/v1/images/search";
 
-    needle(
-      "get",
-      endpoint,
-      THE_CAT_API_KEY && {
-        headers: {
-          "x-api-key": THE_CAT_API_KEY,
-        },
-      }
-    )
+    needle("get", endpoint)
       .then((response) => {
         const { body } = response;
         // console.log(body);
