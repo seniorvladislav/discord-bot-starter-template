@@ -3,6 +3,7 @@ const needle = require("needle");
 const trackMemberLog = require("./utils/trackMemberLog");
 const indexMembers = require("./utils/indexMembers");
 const connectDB = require("./helpers/db");
+const Member = require("./models/Member");
 
 const client = new Client();
 
@@ -23,23 +24,26 @@ client.on("ready", async () => {
   trackMemberLog(client);
 });
 
-client.on("message", (msg) => {
+client.on("message", async (msg) => {
   console.log(msg.content);
 
   if (msg.author.bot || !msg.content.startsWith(prefix)) return;
 
-  const command = msg.content.toLowerCase().slice(prefix.length);
+  const [commandName, ...args] = msg.content
+    .toLowerCase()
+    .slice(prefix.length)
+    .split(/\s+/);
 
-  if (command === "дата") {
+  if (commandName === "дата") {
     const date = new Date().toLocaleDateString(...locale);
     msg.channel.send(`Сейчас на сервере: ${date}`);
-  } else if (command === "время") {
+  } else if (commandName === "время") {
     const time = new Date().toLocaleTimeString(...locale);
     msg.channel.send(`Время на сервере: ${time}`);
-  } else if (command === "датавремя") {
+  } else if (commandName === "датавремя") {
     const date = new Date().toLocaleString(...locale);
     msg.channel.send(date);
-  } else if (command.match(/ава|avatar/)) {
+  } else if (commandName.match(/ава|avatar/)) {
     const user = msg.mentions.users.first() || msg.author;
 
     const avatarURL = user.displayAvatarURL({
@@ -49,8 +53,8 @@ client.on("message", (msg) => {
     });
 
     msg.channel.send(avatarURL);
-  } else if (command.match(/коты?|cats?/)) {
-    // } else if (command.startsWith('кот') || command.startsWith('cat')) {
+  } else if (commandName.match(/коты?|cats?/)) {
+    // } else if (commandName.startsWith('кот') || commandName.startsWith('cat')) {
     const endpoint = "https://api.thecatapi.com/v1/images/search";
 
     needle(
@@ -70,6 +74,37 @@ client.on("message", (msg) => {
         msg.channel.send(cat.url);
       })
       .catch((err) => console.error(err));
+  } else if (commandName.match(/addbal[ance]?/)) {
+    const userId = msg.mentions.users.first()
+      ? msg.mentions.users.first().id
+      : msg.author.id;
+
+    const sameUser = userId === msg.author.id;
+
+    // console.log("User ID: ", userId);
+
+    console.log(args);
+
+    if (!parseInt(args[0]) && !parseInt(args[1])) {
+      return msg.reply("ты указал неверную сумму перевода!");
+    }
+
+    const amount = parseInt(args.find((arg) => arg.match(/^\d+$/)));
+    console.log(amount);
+
+    const dbMember = await Member.findOne({
+      discordId: userId,
+    });
+
+    dbMember.balance += amount;
+
+    await dbMember.save();
+
+    msg.reply(
+      `ты пополнил ${sameUser ? "свой" : ""} баланс ${
+        !sameUser ? `<@!${userId}> ` : ""
+      }на ${amount}`
+    );
   }
 });
 
