@@ -1,6 +1,10 @@
 const { Client } = require("discord.js");
 const needle = require("needle");
+
+const { connectDB } = require("./helpers/db");
+
 const trackMemberLog = require("./utils/trackMemberLog");
+const indexMembers = require("./utils/indexMembers");
 
 const client = new Client();
 
@@ -13,9 +17,11 @@ if (process.env.NODE_ENV !== "production") {
 
 const { TOKEN, THE_CAT_API_KEY } = process.env;
 
-client.on("ready", () => {
+client.on("ready", async () => {
+  await connectDB();
   console.log(`Успешное подключение к боту`);
   console.log(`Меня зовут ${client.user.username}\n\n`);
+  await indexMembers(client);
   trackMemberLog(client);
 });
 
@@ -49,11 +55,15 @@ client.on("message", (msg) => {
     // } else if (command.startsWith('кот') || command.startsWith('cat')) {
     const endpoint = "https://api.thecatapi.com/v1/images/search";
 
-    needle("get", endpoint, {
-      headers: {
-        "x-api-key": THE_CAT_API_KEY,
-      },
-    })
+    needle(
+      "get",
+      endpoint,
+      THE_CAT_API_KEY && {
+        headers: {
+          "x-api-key": THE_CAT_API_KEY,
+        },
+      }
+    )
       .then((response) => {
         const { body } = response;
         // console.log(body);
