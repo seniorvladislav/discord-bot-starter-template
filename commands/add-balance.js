@@ -11,7 +11,7 @@ module.exports = async (message, args, text) => {
   // но если никто не был упомянут
   // записываем в переменную автора сообщения
   // то есть баланс будет пополнен у него самого
-  const member = message.mentions.members.first() || message.member;
+  const user = message.mentions.users.first() || message.author;
 
   // console.log("User ID:", userId);
 
@@ -33,7 +33,7 @@ module.exports = async (message, args, text) => {
 
   // Получаем члена сервера из БД
   const dbMember = await Member.findOne({
-    discordId: member.user.id,
+    discordId: user.id,
   });
 
   // Если такого члена в БД не существует
