@@ -25,24 +25,29 @@ client.on("ready", async () => {
   trackMemberLog(client);
 });
 
-client.on("message", (msg) => {
-  console.log(msg.content);
+client.on("message", (message) => {
+  console.log("Message content\n" + message.content, "\n");
 
-  if (msg.author.bot || !msg.content.startsWith(prefix)) return;
+  if (message.author.bot || !message.content.startsWith(prefix)) return;
 
-  const command = msg.content.toLowerCase().slice(prefix.length);
+  const [commandName, ...args] = message.content
+    .toLowerCase()
+    .slice(prefix.length)
+    .split(/ +/);
 
-  if (command === "дата") {
+  const text = args.join(" ");
+
+  if (commandName === "дата") {
     const date = new Date().toLocaleDateString(...locale);
-    msg.channel.send(`Сейчас на сервере: ${date}`);
-  } else if (command === "время") {
+    message.channel.send(`Сейчас на сервере: ${date}`);
+  } else if (commandName === "время") {
     const time = new Date().toLocaleTimeString(...locale);
-    msg.channel.send(`Время на сервере: ${time}`);
-  } else if (command === "датавремя") {
+    message.channel.send(`Время на сервере: ${time}`);
+  } else if (commandName === "датавремя") {
     const date = new Date().toLocaleString(...locale);
-    msg.channel.send(date);
-  } else if (command.match(/ава|avatar/)) {
-    const user = msg.mentions.users.first() || msg.author;
+    message.channel.send(date);
+  } else if (commandName.match(/ава|avatar/)) {
+    const user = message.mentions.users.first() || message.author;
 
     const avatarURL = user.displayAvatarURL({
       size: 1024,
@@ -50,9 +55,9 @@ client.on("message", (msg) => {
       format: "png",
     });
 
-    msg.channel.send(avatarURL);
-  } else if (command.match(/коты?|cats?/)) {
-    // } else if (command.startsWith('кот') || command.startsWith('cat')) {
+    message.channel.send(avatarURL);
+  } else if (commandName.match(/коты?|cats?/)) {
+    // } else if (commandName.startsWith('кот') || commandName.startsWith('cat')) {
     const endpoint = "https://api.thecatapi.com/v1/images/search";
 
     needle(
@@ -72,6 +77,8 @@ client.on("message", (msg) => {
         msg.channel.send(cat.url);
       })
       .catch((err) => console.error(err));
+  } else if (commandName.match(/addbal[ance]?/)) {
+    require("./commands/add-balance")(message, args, text);
   }
 });
 
